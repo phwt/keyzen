@@ -1,7 +1,13 @@
-import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const App = () => {
-  return <>App</>;
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
+  return <ThemeProvider theme={theme}>App</ThemeProvider>;
 };
 
 export default App;
