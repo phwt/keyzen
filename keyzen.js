@@ -18,6 +18,10 @@ layouts["azerty"] =
   " jfkdlsmqhgyturieozpabnvcxw6758493021`-=[]\\;',./ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
 layouts["colemak"] =
   " ntesiroahdjglpufywqbkvmcxz1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
+layouts["colemak-dhm"] =
+  " ntesiroamgjblpufywqzkvhdcx1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
+layouts["colemak-dhk"] =
+  " ntesiroakgjblpufywqzmvhdcx1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
 layouts["b�po"] =
   " tesirunamc,�vodpl�jbk'.qxghyf�zw6758493021`-=[]\\;/ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
 layouts["norman"] =
@@ -105,7 +109,7 @@ function keyHandler(e) {
   }
   data.word_index += 1;
   if (data.word_index >= data.word.length) {
-    setTimeout(next_word, 400);
+    setTimeout(next_word, 0);
   }
 
   update_stats();
@@ -191,10 +195,14 @@ function render_layout() {
   for (var layout in layouts) {
     if (data.current_layout == layout) {
       layouts_html +=
-        "<span style='color: #007ACC' onclick='set_layout(\"" + layout + "\");'> ";
+        "<span style='color: #007ACC' onclick='set_layout(\"" +
+        layout +
+        "\");'> ";
     } else {
       layouts_html +=
-        "<span style='color: #AAAAAA' onclick='set_layout(\"" + layout + "\");'> ";
+        "<span style='color: #AAAAAA' onclick='set_layout(\"" +
+        layout +
+        "\");'> ";
     }
     layouts_html += layout + "</span>";
   }
