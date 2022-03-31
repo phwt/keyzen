@@ -10,23 +10,21 @@ data.chars =
   " jfkdlsahgyturieowpqbnvmcxz6758493021`-=[]\\;',./ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
 data.consecutive = 5;
 data.word_length = 7;
-data.current_layout = "qwerty";
+data.current_layout = "QWERTY";
 layouts = {};
-layouts["qwerty"] =
+layouts["QWERTY"] =
   " jfkdlsahgyturieowpqbnvmcxz6758493021`-=[]\\;',./ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
-layouts["azerty"] =
+layouts["AZERTY"] =
   " jfkdlsmqhgyturieozpabnvcxw6758493021`-=[]\\;',./ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
-layouts["colemak"] =
+layouts["Colemak"] =
   " ntesiroahdjglpufywqbkvmcxz1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
-layouts["colemak-dhm"] =
+layouts["Colemak-DHm"] =
   " ntesiroamgjblpufywqzkvhdcx1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
-layouts["colemak-dhk"] =
+layouts["Colemak-DHk"] =
   " ntesiroakgjblpufywqzmvhdcx1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
-layouts["b�po"] =
-  " tesirunamc,�vodpl�jbk'.qxghyf�zw6758493021`-=[]\\;/ABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+{}|:\"<>?";
-layouts["norman"] =
+layouts["Norman"] =
   " ntieosaygjkufrdlw;qbpvmcxz1234567890'\",.!?:;/@$%&#*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ~+-={}|^<>`[]\\";
-layouts["code-es6"] = " {}',;():.>=</_-|`!?#[]\\+\"@$%&*~^";
+layouts["ES6"] = " {}',;():.>=</_-|`!?#[]\\+\"@$%&*~^";
 
 $(document).ready(function () {
   load_audio();
@@ -207,7 +205,7 @@ function render_layout() {
     layouts_html += layout + "</span>";
   }
   layouts_html += "</span>";
-  $("#layout").html("Choose layout : " + layouts_html);
+  $("#layout").html("Layout: " + layouts_html);
 }
 
 function render_level() {
