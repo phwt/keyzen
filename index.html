@@ -1,146 +1,141 @@
-<!doctype html5>
+<!DOCTYPE html5>
 
 <!--<html manifest="keyzen.manifest">-->
 <html>
+  <head>
+    <title>keyzen</title>
+    <script src="jquery.js"></script>
+    <script src="keyzen.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 
-    <head>
-        <title>keyzen</title>
-        <script src="jquery.js"></script>
-        <script src="keyzen.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap");
 
-        <style>
+      @font-face {
+        font-family: "Ubuntu Monokz";
+        font-style: normal;
+        font-weight: normal;
+        src: local("Ubuntu Monokz"), local("UbuntuMono-Regular"),
+          url("ubuntu-mono.woff") format("woff");
+      }
 
-            @font-face {
-              font-family: 'Ubuntu Monokz';
-              font-style: normal;
-              font-weight: normal;
-              src: local('Ubuntu Monokz'), local('UbuntuMono-Regular'), url('ubuntu-mono.woff') format('woff');
-            }
+      :root {
+        --text-color: #ffffff;
+        --accent-color: #007acc;
+        --danger-color: #fb4040;
+      }
 
-            body {
-                background-image: url('brushed_alu.png');
-                font-family: 'Ubuntu Monokz', sans-serif;
-                padding: 0; 
-                margin: 0;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;            
-            }
+      body {
+        background-color: #1c1c1c;
+        font-family: "Roboto Mono", "Ubuntu Monokz", sans-serif;
+        padding: 0;
+        margin: 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: var(--text-color);
+      }
 
-            #container {
-                position: relative;
-                width:100%;
-                height:100%;
-            }
+      #container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
 
-            #word {
-                color: #AAA;
-                position: absolute;
-                top: 50%;
-                margin-top: -64px;
-                height:128px;
-                font-size: 128px;
-                width:100%;
-                padding: 0px;
-                text-align: center;
-                margin-left: auto;
-                margin-right:auto;
-                word-wrap: break-word;
-            	text-shadow: 0px 2px 3px #000;
-            }
-            
-            .keys-hit {
-                color: #CCC;
-                font-size: 128px;
-            	text-shadow: none;
-            }
-            
-            #next-level {
-                height: 2px;
-                background-color: #f78d1d;
-                margin-left: auto;
-                margin-right:auto;
-            }
+      #word {
+        position: absolute;
+        top: 50%;
+        margin-top: -64px;
+        height: 128px;
+        font-size: 128px;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        word-wrap: break-word;
+        text-shadow: 0px 2px 3px #000;
+      }
 
-            #level-chars {
-                font-size: 16px;
-                width:95%;
-                text-align: center;
-                padding: 16px;
-                margin-left: auto;
-                margin-right:auto;
-                word-wrap: break-word;
-                font-weight: bold;
-                cursor: hand;
-                color: #AAAAAA;
-            }
-            
-            #rigor {
-                font-size: 16px;
-                position: absolute;
-                right: 16px;
-                bottom: 16px;
-                color: #AAA;
-                font-weight: bold;
-                text-align: right;
-            }
+      .keys-hit {
+        color: #ccc;
+        font-size: 128px;
+        text-shadow: none;
+      }
 
-            #stats {
-                font-size: 16px;
-                position: absolute;
-                left: 16px;
-                bottom: 16px;
-                color: #AAA;
-                font-weight: bold;
-                text-align: right;
-            }
-            
-            #rigor-number {
-                color: #000;
-                cursor: hand;
-            }   
+      #next-level {
+        height: 2px;
+        background-color: var(--accent-color);
+        margin-left: auto;
+        margin-right: auto;
+      }
 
-            .currentChar {
-                border-bottom: 4px solid #f78d1d;
-            }
-            
-            .errorChar {
-                color: #FF0000;
-            }
-            
-            .goodChar {
-                color: #AAAAAA;
-            	text-shadow: 0px 1px 1px #FFF, 0px 2px 2px #FFF;
-            }
-            
-        </style>
+      #level-chars,
+      #layout {
+        font-size: 16px;
+        width: 95%;
+        text-align: center;
+        padding-bottom: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        word-wrap: break-word;
+        font-weight: bold;
+        cursor: hand;
+      }
 
-    </head>
+      #rigor {
+        font-size: 16px;
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        font-weight: bold;
+        text-align: right;
+      }
 
-    <body>
+      #stats {
+        font-size: 16px;
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        font-weight: bold;
+        text-align: right;
+      }
 
-        <div id='container'>
+      #rigor-number {
+        cursor: hand;
+      }
 
-            <div id='level-chars'>
-            </div>
+      .currentChar {
+        border-bottom: 10px solid var(--accent-color);
+      }
 
-            <div id='next-level'>
-            </div>
+      .errorChar {
+        color: var(--danger-color);
+      }
 
-            <div id='word'>
-            </div>
-            
-            <div id='rigor'>
-            </div>
+      .goodChar {
+        color: var(--accent-color);
+      }
+    </style>
+  </head>
 
-            <div id="stats">
-            </div>
+  <body>
+    <div id="container">
+      <div id="layout"></div>
 
-        </div>        
+      <div id="level-chars"></div>
 
-    </body>
-    
+      <div id="next-level"></div>
+
+      <div id="word"></div>
+
+      <div id="rigor"></div>
+
+      <div id="stats"></div>
+    </div>
+  </body>
 </html>
