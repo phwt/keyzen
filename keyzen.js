@@ -191,10 +191,10 @@ function render_layout() {
   for (var layout in layouts) {
     if (data.current_layout == layout) {
       layouts_html +=
-        "<span style='color: #F00' onclick='set_layout(\"" + layout + "\");'> ";
+        "<span style='color: #007ACC' onclick='set_layout(\"" + layout + "\");'> ";
     } else {
       layouts_html +=
-        "<span style='color: #AAA' onclick='set_layout(\"" + layout + "\");'> ";
+        "<span style='color: #AAAAAA' onclick='set_layout(\"" + layout + "\");'> ";
     }
     layouts_html += layout + "</span>";
   }
@@ -208,11 +208,11 @@ function render_level() {
   var training_chars = get_training_chars();
   for (var c in data.chars) {
     if (training_chars.indexOf(data.chars[c]) != -1) {
-      chars += "<span style='color: #F00' onclick='set_level(" + c + ");'>";
+      chars += "<span style='color: #FB4040' onclick='set_level(" + c + ");'>";
     } else if (level_chars.indexOf(data.chars[c]) != -1) {
-      chars += "<span style='color: #000' onclick='set_level(" + c + ");'>";
+      chars += "<span style='color: #007ACC' onclick='set_level(" + c + ");'>";
     } else {
-      chars += "<span style='color: #AAA' onclick='set_level(" + c + ");'>";
+      chars += "<span style='color: #FFFFFF' onclick='set_level(" + c + ");'>";
     }
     if (data.chars[c] == " ") {
       chars += "&#9141;";

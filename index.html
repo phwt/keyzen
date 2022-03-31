@@ -18,8 +18,14 @@
           url("ubuntu-mono.woff") format("woff");
       }
 
+      :root {
+        --text-color: #ffffff;
+        --accent-color: #007acc;
+        --danger-color: #fb4040;
+      }
+
       body {
-        background-image: url("brushed_alu.png");
+        background-color: #1c1c1c;
         font-family: "Ubuntu Monokz", sans-serif;
         padding: 0;
         margin: 0;
@@ -29,6 +35,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        color: var(--text-color);
       }
 
       #container {
@@ -38,7 +45,6 @@
       }
 
       #word {
-        color: #aaa;
         position: absolute;
         top: 50%;
         margin-top: -64px;
@@ -61,7 +67,7 @@
 
       #next-level {
         height: 2px;
-        background-color: #f78d1d;
+        background-color: var(--accent-color);
         margin-left: auto;
         margin-right: auto;
       }
@@ -77,7 +83,6 @@
         word-wrap: break-word;
         font-weight: bold;
         cursor: hand;
-        color: #aaaaaa;
       }
 
       #rigor {
@@ -85,7 +90,6 @@
         position: absolute;
         right: 16px;
         bottom: 16px;
-        color: #aaa;
         font-weight: bold;
         text-align: right;
       }
@@ -95,27 +99,24 @@
         position: absolute;
         left: 16px;
         bottom: 16px;
-        color: #aaa;
         font-weight: bold;
         text-align: right;
       }
 
       #rigor-number {
-        color: #000;
         cursor: hand;
       }
 
       .currentChar {
-        border-bottom: 4px solid #f78d1d;
+        border-bottom: 10px solid var(--accent-color);
       }
 
       .errorChar {
-        color: #ff0000;
+        color: var(--danger-color);
       }
 
       .goodChar {
-        color: #aaaaaa;
-        text-shadow: 0px 1px 1px #fff, 0px 2px 2px #fff;
+        color: var(--accent-color);
       }
     </style>
   </head>
