@@ -1,5 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import TypeSection from "./components/TypeSection";
+import { PracticeConfigContextProvider } from "./contexts/PracticeConfigContext";
 import { PracticeProvider } from "./contexts/PracticeContext";
 
 const App = () => {
@@ -11,9 +12,11 @@ const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <PracticeProvider>
-                <TypeSection />
-            </PracticeProvider>
+            <PracticeConfigContextProvider>
+                <PracticeProvider>
+                    <TypeSection />
+                </PracticeProvider>
+            </PracticeConfigContextProvider>
         </ThemeProvider>
     );
 };

@@ -1,27 +1,27 @@
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePractice } from "../contexts/PracticeContext";
 
 const textStyle = {
     fontFamily: "Roboto Mono",
     fontSize: "5em",
+    whiteSpace: "pre",
 };
 
 const TypeSection = () => {
-    const [currentInput, setCurrentInput] = useState("");
-    const { characters, word } = usePractice();
+    const { word, input, appendInput } = usePractice();
 
     useEffect(() => {
-        const appendInput = ({ key }: { key: string }) => {
-            if (characters.includes(key)) setCurrentInput(currentInput + key);
+        const localAppendInput = ({ key }: { key: string }) => {
+            appendInput(key);
         };
 
-        window.addEventListener("keydown", appendInput);
+        window.addEventListener("keydown", localAppendInput);
 
         return () => {
-            window.removeEventListener("keydown", appendInput);
+            window.removeEventListener("keydown", localAppendInput);
         };
-    }, [currentInput]);
+    }, [input]);
 
     return (
         <Box
@@ -37,9 +37,7 @@ const TypeSection = () => {
         >
             <div>
                 <Box sx={textStyle}>{word}</Box>
-                <Box sx={textStyle}>
-                    {currentInput ? currentInput : <>&nbsp;</>}
-                </Box>
+                <Box sx={textStyle}>{input ? input : <>&nbsp;</>}</Box>
             </div>
         </Box>
     );

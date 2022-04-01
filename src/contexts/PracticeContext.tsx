@@ -1,35 +1,44 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
-import { Layout, layouts } from "../modules/Layouts";
+import {
+    createContext,
+    ReactNode,
+    useCallback,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
+import { useConfig } from "./PracticeConfigContext";
+
+const wordLength = 9;
 
 interface IPracticeContext {
-    layout: Layout;
-    setLayout: (layout: string) => void;
-    characters: string;
     word: string;
+    input: string;
+    appendInput: (character: string) => void;
 }
 
 const PracticeContext = createContext<IPracticeContext>({} as IPracticeContext);
 
 export const PracticeProvider = ({ children }: { children: ReactNode }) => {
-    const [currentLayout, setCurrentLayout] = useState("qwerty");
+    const { characters } = useConfig();
+    const [input, setInput] = useState("");
 
-    const layout = useMemo(() => {
-        const localLayout = layouts.find((l) => l.id === currentLayout);
-        if (localLayout) return localLayout;
-        throw new Error(`Layout not found: ${currentLayout}`);
-    }, [currentLayout]);
+    const appendInput = useCallback(
+        (character: string) => {
+            if (characters.includes(character)) setInput(input + character);
+        },
+        [input, characters]
+    );
 
-    const characters = useMemo(() => {
-        return layout.characters;
-    }, [layout]);
+    useEffect(() => {
+        if (input.length >= wordLength) setTimeout(() => setInput(""), 150);
+    }, [input]);
 
     return (
         <PracticeContext.Provider
             value={{
-                layout,
-                setLayout: setCurrentLayout,
-                characters,
                 word: "arst neio",
+                input,
+                appendInput,
             }}
         >
             {children}
