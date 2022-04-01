@@ -63,9 +63,38 @@ export const PracticeProvider = ({ children }: { children: ReactNode }) => {
 
     const appendInput = useCallback(
         (character: string) => {
-            if (characters.includes(character)) setInput(input + character);
+            if (characters.includes(character)) {
+                if (trainingWord[input.length] === character) {
+                    // Correct
+                    setPracticeCharacterStats(
+                        practiceCharacterStats.map((c) => {
+                            if (c.value === character) {
+                                return {
+                                    ...c,
+                                    consecutive: c.consecutive + 1,
+                                };
+                            }
+                            return c;
+                        })
+                    );
+                } else {
+                    // Incorrect
+                    setPracticeCharacterStats(
+                        practiceCharacterStats.map((c) => {
+                            if (c.value === character) {
+                                return {
+                                    ...c,
+                                    consecutive: 0,
+                                };
+                            }
+                            return c;
+                        })
+                    );
+                }
+                setInput(input + character);
+            }
         },
-        [input, characters]
+        [input, characters, trainingWord]
     );
 
     useEffect(() => {
