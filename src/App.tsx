@@ -1,4 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import TypeSection from "./components/TypeSection";
+import { PracticeProvider } from "./contexts/PracticeContext";
 
 const App = () => {
     const theme = createTheme({
@@ -7,7 +9,13 @@ const App = () => {
         },
     });
 
-    return <ThemeProvider theme={theme}>App</ThemeProvider>;
+    return (
+        <ThemeProvider theme={theme}>
+            <PracticeProvider>
+                <TypeSection />
+            </PracticeProvider>
+        </ThemeProvider>
+    );
 };
 
 export default App;
